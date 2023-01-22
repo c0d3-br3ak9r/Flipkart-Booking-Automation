@@ -1,0 +1,50 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys
+import time
+
+
+def automate(x):
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver.get('https://flipkart.com/')
+    user = driver.find_element_by_xpath("//input[@class='_2IX_2- VJZDxU']")
+    user.send_keys(x[0])
+    time.sleep(5)
+    passd=  driver.find_element_by_xpath("//input[@type='password']")
+    passd.send_keys(x[1])
+    time.sleep(5)
+    button = driver.find_element_by_xpath("//button[@class='_2KpZ6l _2HKlqd _3AWRsL']")
+    button.click()
+    print('User Successfully Logined In')
+    time.sleep(5)
+    driver.get(x[6])
+    print("product searched")
+    time.sleep(5)
+    #pincode=driver.find_element_by_id('pincodeInputId')
+    #pincode.send_keys('600092')
+    #time.sleep(5)
+    #check=driver.find_element_by_xpath("//span[@class='_2P_LDn']")
+    #check.click()
+    #time.sleep(5)
+    buynow= driver.find_element_by_xpath("//button[@type='button']")
+    buynow.click()
+    print("buynow button clicked")
+    time.sleep(5)
+    conti=driver.find_element_by_xpath("//button[@class='_2KpZ6l _1seccl _3AWRsL']")
+    conti.click()
+    time.sleep(2)
+    if x[4]==1:
+        UPI_select=driver.find_element_by_xpath("//label[@for='UPI_COLLECT']")
+        UPI_select.click()
+        UPI_enter=driver.find_element_by_xpath("//input[@class='_1w3ZZo _2mFmU7']")
+        UPI_enter.send_keys()
+        conti2=driver.find_element_by_class_name('_2-Y9bv')
+        conti2.click()
+        #pay1=driver.find_element_by_xpath("//button[@class='_2KpZ6l TSm6c4 _3AWRsL']")
+        #pay1.click()
+    elif x[4]==0:
+        card_select=driver.find_element_by_xpath("//label[@for='CREDIT']")
+        card_select.click()
+        card_enter=driver.find_element_by_xpath("//input[@type='text']")
+        card_enter.click()
+        card_enter.send_keys()
