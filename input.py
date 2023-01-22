@@ -63,7 +63,7 @@ def getDetals():
     with open("creds.txt", 'r') as fl:
         res = fl.readlines()
         if ( len(res) > 0 ):
-            return [1].split() 
+            return res[1].split() 
 
 def order(x):
     os.system("pythonw order.py {} {} {} {} {} {} {}".format(x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
